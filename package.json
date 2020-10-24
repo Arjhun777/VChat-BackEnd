@@ -1,0 +1,29 @@
+{
+  "name": "vchart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node .",
+    "build": "babel ./src -d ./dist -s"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "socket.io": "^2.3.0",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3"
+  }
+}
