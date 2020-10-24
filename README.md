@@ -4,6 +4,7 @@ npm i
 npm start
 
 
-# Install peerjs Globaly and start the package
+# Install peerjs Globaly
 npm i -g peerjs
+# To start peerjs
 peerjs --port 5002
