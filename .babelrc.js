@@ -10,19 +10,7 @@ module.exports = {
     ],
   ],
   plugins: [
-    '@babel/plugin-transform-runtime',
-    '@babel/plugin-proposal-class-properties',
-    [
-      'module-resolver',
-      {
-        root: ['./'],
-        alias: {
-          'Src': './src',
-          'Routes': './src/routes',
-          'Models': './src/models'
-        },
-      },
-    ],
+    '@babel/plugin-transform-runtime'
   ],
   env: {
     development: {
