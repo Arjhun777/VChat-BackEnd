@@ -9,9 +9,6 @@ module.exports = {
       },
     ],
   ],
-  plugins: [
-    '@babel/plugin-transform-runtime'
-  ],
   env: {
     development: {
       sourceMaps: true,
