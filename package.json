@@ -16,7 +16,8 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "socket.io": "^2.3.0",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.0",
+    "nodemon": "^2.0.3"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
@@ -27,6 +28,5 @@
     "@babel/register": "^7.12.1",
     "babel-cli": "^6.26.0",
     "babel-node": "0.0.1-security",
-    "nodemon": "^2.0.3"
   }
 }
