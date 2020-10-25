@@ -27,6 +27,6 @@
     "@babel/preset-env": "7.9.5",
     "@babel/register": "^7.12.1",
     "babel-cli": "^6.26.0",
-    "babel-node": "0.0.1-security",
+    "babel-node": "0.0.1-security"
   }
 }
