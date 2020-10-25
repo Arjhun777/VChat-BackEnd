@@ -15,6 +15,7 @@ module.exports = {
       [
         'module-resolver',
         {
+          extensions: [".js", ".jsx", ".es", ".es6", ".mjs"],
           root: ['./'],
           alias: {
             'Src': './src',
