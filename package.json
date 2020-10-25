@@ -19,9 +19,7 @@
     "uuid": "^8.3.0",
     "nodemon": "^2.0.3",
     "@babel/node": "7.8.7",
-    "babel-node": "0.0.1-security"
-  },
-  "devDependencies": {
+    "babel-node": "0.0.1-security",
     "@babel/cli": "7.8.4",
     "@babel/core": "7.9.0",
     "@babel/plugin-transform-runtime": "^7.9.6",
