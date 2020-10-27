@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import server from 'http';
+import server from 'https';
 import socketIO from 'socket.io';
 import { v4 as uuidV4 } from 'uuid';
 
@@ -21,14 +21,6 @@ app.get('/join', (req, res) => {
 // app.use(express.static('public'));
 // app.set('view engine', 'ejs');
 
-// app.get('/', (req, res) => {
-//     res.redirect(`/${uuidV4()}`)
-// });
-
-// app.get(('/:room'), (req, res) => {
-//     res.render('room', { roomID: req.params.room });
-// })
-
 io.on('connection', socket => {
     socket.on('join-room', (roomID, userID) => {
         console.log('Joinned in Room', roomID);
@@ -41,8 +33,11 @@ io.on('connection', socket => {
 })
 
 // Server listen initilized
-serve.listen(port, () => {
+// serve.listen(port, () => {
+//     console.log(`Listening on the port ${port}`);
+// }).on('error', e => {
+//     console.error(e);
+// });
+server.createServer({}, (req, res) => {
     console.log(`Listening on the port ${port}`);
-}).on('error', e => {
-    console.error(e);
-});
+}).listen(port)
