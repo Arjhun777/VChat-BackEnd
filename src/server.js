@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import server from 'https';
+import server from 'http';
 import socketIO from 'socket.io';
 import { v4 as uuidV4 } from 'uuid';
 
