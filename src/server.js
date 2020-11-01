@@ -3,8 +3,11 @@ import cors from 'cors';
 import server from 'http';
 import socketIO from 'socket.io';
 import { v4 as uuidV4 } from 'uuid';
+import peer from 'peer';
 
 const app = express();
+const peerjsServer = peer.PeerServer;
+const ExpressPeerServer = peer.ExpressPeerServer;
 const serve = server.Server(app);
 const io = socketIO(serve);
 const port = process.env.PORT || 5000;
@@ -18,18 +21,8 @@ app.get('/join', (req, res) => {
     res.send({ link: uuidV4() });
 });
 
-// app.use(express.static('public'));
-// app.set('view engine', 'ejs');
-
-// app.get('/', (req, res) => {
-//     res.redirect(`/${uuidV4()}`)
-// });
-
-// app.get(('/:room'), (req, res) => {
-//     res.render('room', { roomID: req.params.room });
-// })
-
 io.on('connection', socket => {
+    console.log('socket established')
     socket.on('join-room', (roomID, userID) => {
         console.log('Joinned in Room', roomID);
         socket.join(roomID);
@@ -38,7 +31,7 @@ io.on('connection', socket => {
             socket.to(roomID).broadcast.emit('user-disconnected', userID);
         })
     })
-})
+});
 
 // Server listen initilized
 serve.listen(port, () => {
@@ -46,3 +39,10 @@ serve.listen(port, () => {
 }).on('error', e => {
     console.error(e);
 });
+
+const peerjsApp = peerjsServer({
+    port: 9000,
+    path: '/'
+})
+app.use('/peerjs', ExpressPeerServer(peerjsApp));
+
