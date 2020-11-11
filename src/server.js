@@ -3,11 +3,8 @@ import cors from 'cors';
 import server from 'http';
 import socketIO from 'socket.io';
 import { v4 as uuidV4 } from 'uuid';
-import peer from 'peer';
 
 const app = express();
-const peerjsServer = peer.PeerServer;
-const ExpressPeerServer = peer.ExpressPeerServer;
 const serve = server.Server(app);
 const io = socketIO(serve);
 const port = process.env.PORT || 5000;
@@ -23,12 +20,17 @@ app.get('/join', (req, res) => {
 
 io.on('connection', socket => {
     console.log('socket established')
-    socket.on('join-room', (roomID, userID) => {
-        console.log('Joinned in Room', roomID);
+    socket.on('join-room', (userData) => {
+        const { roomID, userID } = userData;
+        console.log('Joinned in Room', roomID, 'user data', JSON.stringify(userData));
         socket.join(roomID);
-        socket.to(roomID).broadcast.emit('new-user-connect', userID);
+        socket.to(roomID).broadcast.emit('new-user-connect', userData);
         socket.on('disconnect', () => {
             socket.to(roomID).broadcast.emit('user-disconnected', userID);
+        });
+        socket.on('broadcast-message', (message) => {
+            console.log('new message received', message, JSON.stringify(userData));
+            socket.to(roomID).broadcast.emit('new-broadcast-messsage', {message, userData});
         })
     })
 });
@@ -39,10 +41,4 @@ serve.listen(port, () => {
 }).on('error', e => {
     console.error(e);
 });
-
-const peerjsApp = peerjsServer({
-    port: 9000,
-    path: '/'
-})
-app.use('/peerjs', ExpressPeerServer(peerjsApp));
 
