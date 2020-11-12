@@ -29,8 +29,8 @@ io.on('connection', socket => {
             socket.to(roomID).broadcast.emit('user-disconnected', userID);
         });
         socket.on('broadcast-message', (message) => {
-            console.log('new message received', message, JSON.stringify(userData));
-            socket.to(roomID).broadcast.emit('new-broadcast-messsage', {message, userData});
+            console.log('new message received', JSON.stringify(message));
+            socket.to(roomID).broadcast.emit('new-broadcast-messsage', {...message, userData});
         })
     })
 });
